@@ -14,7 +14,9 @@ app.use(morgan('combined'))
 // }))
 
 app.use(cors({
-  origin: "*"
+  origin: "https://shoe-app-frontend-ten.vercel.app",
+  methods:["PUT", "PATCH", "GET", "DELETE", "POST"],
+  credentials: true
 }))
 app.get('/', (req, res)=>{
   res.send("Apigateway...")
