@@ -14,7 +14,7 @@ app.use(morgan('combined'))
 // }))
 
 app.use(cors({
-  origin: "https://shoe-app-frontend-ten.vercel.app",
+  origin: "http://localhost:5173",
   methods:["PUT", "PATCH", "GET", "DELETE", "POST"],
   credentials: true
 }))
@@ -26,7 +26,6 @@ app.get('/', (req, res)=>{
 app.use("/productService",checkJwt,(req, res, next) => {
   
   if (req.auth?.sub) {
-    console.log(req.headers["authorization"])
     req.headers["x-user-id"] = req.auth.sub;
   }
   next();
