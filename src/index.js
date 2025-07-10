@@ -6,7 +6,7 @@ const rateLimiter = require("express-rate-limit")
 const axios = require('axios')
 const app = express();
 const checkJwt = require("./middleware/auth")
-const {PRODUCT_SERVICE_BASE_URL, CART_SERVICE_BASE_URL, ORDER_SERVICE_BASE_URL, PORT, VERIFICATION_SERVICE_BASE_URL} = require("./config/server-config")
+const {PRODUCT_SERVICE_BASE_URL, CART_SERVICE_BASE_URL, ORDER_SERVICE_BASE_URL, PORT, VERIFICATION_SERVICE_BASE_URL, FRONTEND_URL} = require("./config/server-config")
 app.use(morgan('combined'))
 // app.use(rateLimiter({
 //   windowMs: 2*60*1000,
@@ -14,7 +14,7 @@ app.use(morgan('combined'))
 // }))
 
 app.use(cors({
-  origin: "http://localhost:5173",
+  origin: FRONTEND_URL,
   methods:["PUT", "PATCH", "GET", "DELETE", "POST"],
   credentials: true
 }))

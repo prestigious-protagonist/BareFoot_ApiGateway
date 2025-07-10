@@ -7,5 +7,6 @@ module.exports = {
     CART_SERVICE_BASE_URL : process.env.CART_SERVICE_BASE_URL,
     ORDER_SERVICE_BASE_URL : process.env.ORDER_SERVICE_BASE_URL,
     VERIFICATION_SERVICE_BASE_URL : process.env.VERIFICATION_SERVICE_BASE_URL,
-    PORT: process.env.PORT
+    PORT: process.env.PORT,
+    FRONTEND_URL : process.env.FRONTEND_URL
 }
