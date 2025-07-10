@@ -6,7 +6,7 @@ const rateLimiter = require("express-rate-limit")
 const axios = require('axios')
 const app = express();
 const checkJwt = require("./middleware/auth")
-const {PRODUCT_SERVICE_BASE_URL, CART_SERVICE_BASE_URL, ORDER_SERVICE_BASE_URL, PORT} = require("./config/server-config")
+const {PRODUCT_SERVICE_BASE_URL, CART_SERVICE_BASE_URL, ORDER_SERVICE_BASE_URL, PORT, VERIFICATION_SERVICE_BASE_URL} = require("./config/server-config")
 app.use(morgan('combined'))
 // app.use(rateLimiter({
 //   windowMs: 2*60*1000,
@@ -56,6 +56,18 @@ app.use("/orderService",checkJwt,(req, res, next) => {
   next();
 }, createProxyMiddleware({
   target: ORDER_SERVICE_BASE_URL,
+  changeOrigin: true,
+  
+}));
+
+app.use("/verificationService",checkJwt,(req, res, next) => {
+  
+  if (req.auth?.sub) {
+    req.headers["x-user-id"] = req.auth.sub;
+  }
+  next();
+}, createProxyMiddleware({
+  target: VERIFICATION_SERVICE_BASE_URL,
   changeOrigin: true,
   
 }));
