@@ -8,10 +8,10 @@ const app = express();
 const checkJwt = require("./middleware/auth")
 const {PRODUCT_SERVICE_BASE_URL, CART_SERVICE_BASE_URL, ORDER_SERVICE_BASE_URL, PORT, VERIFICATION_SERVICE_BASE_URL, FRONTEND_URL} = require("./config/server-config")
 app.use(morgan('combined'))
-// app.use(rateLimiter({
-//   windowMs: 2*60*1000,
-//   max: 5
-// }))
+app.use(rateLimiter({
+  windowMs: 2*60*1000,
+  max: 10
+}))
 
 app.use(cors({
   origin: FRONTEND_URL,
