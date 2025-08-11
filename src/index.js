@@ -2,16 +2,16 @@ const express = require("express");
 const morgan = require("morgan");
 const { createProxyMiddleware } = require("http-proxy-middleware");
 const cors = require("cors");
-const rateLimiter = require("express-rate-limit") 
+// const rateLimiter = require("express-rate-limit") 
 const axios = require('axios')
 const app = express();
 const checkJwt = require("./middleware/auth")
 const {PRODUCT_SERVICE_BASE_URL, CART_SERVICE_BASE_URL, ORDER_SERVICE_BASE_URL, PORT, VERIFICATION_SERVICE_BASE_URL, FRONTEND_URL} = require("./config/server-config")
 app.use(morgan('combined'))
-app.use(rateLimiter({
-  windowMs: 2*60*1000,
-  max: 1000
-}))
+// app.use(rateLimiter({
+//   windowMs: 2*60*1000,
+//   max: 1000
+// }))
 
 app.use(cors({
   origin: FRONTEND_URL,
