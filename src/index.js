@@ -10,7 +10,7 @@ const {PRODUCT_SERVICE_BASE_URL, CART_SERVICE_BASE_URL, ORDER_SERVICE_BASE_URL, 
 app.use(morgan('combined'))
 app.use(rateLimiter({
   windowMs: 2*60*1000,
-  max: 10
+  max: 1000
 }))
 
 app.use(cors({
